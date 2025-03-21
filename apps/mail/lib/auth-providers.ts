@@ -76,6 +76,28 @@ export const authProviders: ProviderConfig[] = [
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     },
   },
+  {
+    id: "microsoft",
+    name: "Microsoft Entra",
+    requiredEnvVars: [
+      "MICROSOFT_CLIENT_ID",
+      "MICROSOFT_CLIENT_SECRET",
+      "MICROSOFT_REDIRECT_URI"
+    ],
+    envVarInfo: [
+      { name: "MICROSOFT_CLIENT_ID", source: "Microsoft Azure Portal" },
+      { name: "MICROSOFT_CLIENT_SECRET", source: "Microsoft Azure Portal" },
+      {
+        name: "MICROSOFT_REDIRECT_URI",
+        source: "Microsoft Azure Portal",
+        defaultValue: "http://localhost:3000/api/v1/mail/auth/microsoft/callback"
+      }
+    ],
+    config: {
+      clientId: process.env.MICROSOFT_CLIENT_ID,
+      clientSecret: process.env.MICROSOFT_CLIENT_SECRET,
+    },
+  },
 ];
 
 export function isProviderEnabled(provider: ProviderConfig): boolean {
